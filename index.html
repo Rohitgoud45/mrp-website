@@ -1,163 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riverton Parking System | Team 7</title>
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;500;700&display=swap"
+    rel="stylesheet">
+
   <!-- Mermaid & Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-  <style>
-    :root {
-      --bg-base: #050505;
-      --bg-surface: rgba(20, 20, 25, 0.6);
-      --bg-surface-hover: rgba(30, 30, 40, 0.8);
-      --primary: #00d4ff;
-      --primary-glow: rgba(0, 212, 255, 0.4);
-      --secondary: #8a2be2;
-      --accent: #ff0055;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.08);
-      --glass-blur: blur(16px);
-      --radius: 16px;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-base);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Animated Background */
-    .bg-animation {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: -1;
-      background: radial-gradient(circle at 15% 50%, rgba(138, 43, 226, 0.15), transparent 25%),
-                  radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.15), transparent 25%);
-      animation: pulseBg 15s infinite alternate;
-    }
-
-    @keyframes pulseBg {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.1); }
-    }
-
-    /* Typography */
-    h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
-    h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
-    h2 { font-size: clamp(2rem, 3vw, 2.5rem); font-weight: 500; margin-bottom: 2rem; color: var(--primary); }
-    h3 { font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; }
-    p { margin-bottom: 1rem; color: var(--text-muted); }
-    
-    .gradient-text {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Layout & Containers */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 6rem 0; opacity: 0; transform: translateY(30px); transition: var(--transition); }
-    section.visible { opacity: 1; transform: translateY(0); }
-    
-    .grid { display: grid; gap: 2rem; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-
-    /* UI Components */
-    .glass-card {
-      background: var(--bg-surface);
-      backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .glass-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary-glow);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-    .glass-card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-      background: linear-gradient(90deg, var(--primary), transparent);
-      opacity: 0; transition: var(--transition);
-    }
-    .glass-card:hover::before { opacity: 1; }
-
-    /* Navbar */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border); padding: 1rem 0;
-    }
-    .nav-content { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-    .logo-icon { width: 24px; height: 24px; fill: var(--primary); }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
-    .nav-links a:hover { color: var(--primary); }
-
-    /* Hero Section */
-    .hero { min-height: 100vh; display: flex; align-items: center; text-align: center; padding-top: 80px; }
-    .hero-content { max-width: 800px; margin: 0 auto; }
-    .team-badge { display: inline-block; padding: 0.5rem 1rem; background: rgba(138, 43, 226, 0.2); border: 1px solid var(--secondary); border-radius: 50px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--secondary); }
-    
-    /* Team Members */
-    .team-list { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
-    .team-member { background: var(--bg-surface); padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid var(--border); font-size: 0.9rem; }
-
-    /* Buttons */
-    .btn { display: inline-block; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 500; transition: var(--transition); cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
-    .btn-primary { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: #fff; box-shadow: 0 0 15px var(--primary-glow); }
-    .btn-primary:hover { box-shadow: 0 0 25px var(--primary-glow); transform: scale(1.05); }
-    .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
-    .btn-outline:hover { background: rgba(0, 212, 255, 0.1); }
-
-    /* Tables & Matrices */
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-    th { color: var(--primary); font-family: 'Outfit', sans-serif; font-weight: 500; }
-    tr:hover td { background: rgba(255, 255, 255, 0.02); }
-
-    /* Badges */
-    .badge { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 500; }
-    .bg-green { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.2); }
-    .bg-orange { background: rgba(255, 165, 0, 0.1); color: #ffa500; border: 1px solid rgba(255, 165, 0, 0.2); }
-    
-    /* Embeds */
-    .iframe-container { position: relative; width: 100%; padding-bottom: 56.25%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); margin-top: 1.5rem; background: #000; }
-    .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    
-    /* Chart Container */
-    .chart-container { position: relative; height: 300px; width: 100%; margin-top: 1.5rem; }
-
-    /* Footer */
-    footer { border-top: 1px solid var(--border); padding: 3rem 0; text-align: center; margin-top: 4rem; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      section { padding: 4rem 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <div class="bg-animation"></div>
@@ -166,7 +28,10 @@
   <nav>
     <div class="container nav-content">
       <a href="#" class="logo">
-        <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2"
+            stroke-linejoin="round" fill="none" />
+        </svg>
         Riverton
       </a>
       <ul class="nav-links">
@@ -186,15 +51,19 @@
     <div class="container hero-content">
       <span class="team-badge">Team 7 Major Research Project</span>
       <h1>Modernizing Riverton's <br><span class="gradient-text">Parking Ecosystem</span></h1>
-      <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">A cloud-native Centralized Integrated Parking System (CIPS) designed to eliminate data silos, reduce wrongful citations, and elevate the citizen experience.</p>
-      
+      <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">A cloud-native Centralized Integrated Parking
+        System (CIPS) designed to eliminate data silos, reduce wrongful citations, and elevate the citizen experience.
+      </p>
+
       <div class="team-list">
-        <div class="team-member">Sarah Jenkins - Architect</div>
-        <div class="team-member">David Chen - Data Lead</div>
-        <div class="team-member">Aisha Patel - Dev Lead</div>
-        <div class="team-member">Marcus Rowe - UX/UI</div>
+        <div class="team-member">Rohit Bandameedi - Architect</div>
+        <div class="team-member">Armili Paturi- Data Lead</div>
+        <div class="team-member">Rakshana Mannava Yesu- Dev Lead</div>
+        <div class="team-member">Steven Jhonson Bovolla - UX/UI</div>
+        <div class="team-member">Jayaram Bogasamudram- UX/UI</div>
+
       </div>
-      
+
       <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center;">
         <a href="#dashboard" class="btn btn-primary">View Dashboard</a>
         <a href="#app" class="btn btn-outline">Explore App</a>
@@ -206,9 +75,21 @@
   <section id="summary" class="container">
     <div class="glass-card">
       <h2>Executive Summary</h2>
-      <p>The City of Riverton faces critical operational challenges within its municipal parking infrastructure. Current workflows are fragmented across the Parking Permit Office, Enforcement Division, and Finance Department, relying on outdated batch-processing, legacy hardware, and siloed data repositories. This lack of integration leads to severe synchronization delays, resulting in wrongful citations, revenue loss, and diminished public trust.</p>
-      <p>To address this, Team 7 proposes the implementation of the <strong>Centralized Integrated Parking System (CIPS)</strong>. CIPS is a cloud-native platform utilizing a robust Node.js/Express backend and a centralized SQL database to ensure real-time data synchronization across all municipal departments. By transitioning from batch updates to instant verification, CIPS enables enforcement officers to access live permit statuses, significantly reducing erroneous tickets.</p>
-      <p>This project encompasses a complete enterprise architecture redesign following the TOGAF ADM framework. It includes the development of citizen-facing portals, a mobile app for enforcement officers, and a comprehensive Power BI analytics dashboard for city administrators. Ultimately, CIPS aims to increase operational efficiency by 40%, reduce wrongful citations by over 80%, and establish a scalable foundation for Riverton's smart city initiatives.</p>
+      <p>The City of Riverton faces critical operational challenges within its municipal parking infrastructure. Current
+        workflows are fragmented across the Parking Permit Office, Enforcement Division, and Finance Department, relying
+        on outdated batch-processing, legacy hardware, and siloed data repositories. This lack of integration leads to
+        severe synchronization delays, resulting in wrongful citations, revenue loss, and diminished public trust.</p>
+      <p>To address this, Team 7 proposes the implementation of the <strong>Centralized Integrated Parking System
+          (CIPS)</strong>. CIPS is a cloud-native platform utilizing a robust Node.js/Express backend and a centralized
+        SQL database to ensure real-time data synchronization across all municipal departments. By transitioning from
+        batch updates to instant verification, CIPS enables enforcement officers to access live permit statuses,
+        significantly reducing erroneous tickets.</p>
+      <p>This project encompasses a complete enterprise architecture redesign following the TOGAF ADM framework. It
+        includes the development of citizen-facing portals, a mobile app for enforcement officers, and a comprehensive
+        Looker Studio analytics dashboard for city administrators. Ultimately, CIPS aims to increase operational
+        efficiency
+        by 40%, reduce wrongful citations by over 80%, and establish a scalable foundation for Riverton's smart city
+        initiatives.</p>
     </div>
   </section>
 
@@ -218,7 +99,8 @@
     <div class="grid grid-2">
       <div class="glass-card">
         <h3>The Core Problem</h3>
-        <p>Riverton's current parking management environment exemplifies severe misalignment across Business, Data, and Technology layers. Specifically, the system suffers from:</p>
+        <p>Riverton's current parking management environment exemplifies severe misalignment across Business, Data, and
+          Technology layers. Specifically, the system suffers from:</p>
         <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 1rem;">
           <li>Delayed batch-based data synchronization (24-48 hour lag).</li>
           <li>Disconnected legacy handheld devices used by enforcement.</li>
@@ -230,12 +112,30 @@
       <div class="glass-card">
         <h3>Key Stakeholders</h3>
         <table>
-          <tr><th>Stakeholder</th><th>Interest / Role</th></tr>
-          <tr><td>Citizens</td><td>Fair ticketing, easy permit access</td></tr>
-          <tr><td>Enforcement Officers</td><td>Accurate, real-time vehicle data</td></tr>
-          <tr><td>City Council</td><td>Revenue assurance, public approval</td></tr>
-          <tr><td>Permit Admin</td><td>Streamlined application processing</td></tr>
-          <tr><td>IT Department</td><td>System maintenance, security</td></tr>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Interest / Role</th>
+          </tr>
+          <tr>
+            <td>Citizens</td>
+            <td>Fair ticketing, easy permit access</td>
+          </tr>
+          <tr>
+            <td>Enforcement Officers</td>
+            <td>Accurate, real-time vehicle data</td>
+          </tr>
+          <tr>
+            <td>City Council</td>
+            <td>Revenue assurance, public approval</td>
+          </tr>
+          <tr>
+            <td>Permit Admin</td>
+            <td>Streamlined application processing</td>
+          </tr>
+          <tr>
+            <td>IT Department</td>
+            <td>System maintenance, security</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -266,7 +166,7 @@
   <!-- DASHBOARD & DATA ANALYSIS -->
   <section id="dashboard" class="container">
     <h2>Dashboard & Data Analysis</h2>
-    
+
     <div class="grid grid-2" style="margin-bottom: 2rem;">
       <!-- ER Diagram -->
       <div class="glass-card">
@@ -274,15 +174,15 @@
         <p>The normalized database structure underpinning the CIPS platform.</p>
         <div class="mermaid">
           erDiagram
-            CITIZEN ||--o{ PERMIT : applies_for
-            CITIZEN ||--o{ VEHICLE : owns
-            VEHICLE ||--o{ PERMIT : linked_to
-            VEHICLE ||--o{ CITATION : receives
-            OFFICER ||--o{ CITATION : issues
-            CITATION ||--o| DISPUTE : generates
+          CITIZEN ||--o{ PERMIT : applies_for
+          CITIZEN ||--o{ VEHICLE : owns
+          VEHICLE ||--o{ PERMIT : linked_to
+          VEHICLE ||--o{ CITATION : receives
+          OFFICER ||--o{ CITATION : issues
+          CITATION ||--o| DISPUTE : generates
         </div>
       </div>
-      
+
       <!-- Data Flow -->
       <div class="glass-card">
         <h3>Data Flow Explanation</h3>
@@ -292,7 +192,8 @@
           <li><strong>Cloud DB:</strong> Request is instantly written to the centralized SQL database.</li>
           <li><strong>Admin Engine:</strong> Automated checks approve routine permits.</li>
           <li><strong>Enforcement API:</strong> Officer's mobile app queries DB via REST API upon plate scan.</li>
-          <li><strong>Live Response:</strong> App displays exact, up-to-the-second permit status, preventing wrongful tickets.</li>
+          <li><strong>Live Response:</strong> App displays exact, up-to-the-second permit status, preventing wrongful
+            tickets.</li>
         </ol>
       </div>
     </div>
@@ -301,12 +202,17 @@
     <div class="glass-card" style="margin-bottom: 2rem;">
       <h3>Live Analytics Dashboard (Part 1: Current State vs Targets)</h3>
       <div class="iframe-container">
-        <!-- Placeholder for PowerBI or Tableau embed -->
-        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiX_PLACEHOLDER_KEY_XIiwidCI6IjY3ZDM1Y2IyLTg2YTAtNDM3OC1iNGI2LTdlYTRmNWRhNWE2NSIsImMiOjZ9&pageName=ReportSection" title="Project Dashboard"></iframe>
+        <!-- Looker Studio embed -->
+        <iframe
+          src="https://datastudio.google.com/embed/reporting/e27e1eb5-5b05-4f46-a3fa-e8237fe22e89/page/pfNwF"
+          frameborder="0" style="border:0" allowfullscreen
+          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+          title="Project Dashboard"></iframe>
       </div>
       <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center;">
         <a href="#" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem;">Open Full Dashboard</a>
-        <span style="font-size: 0.9rem; color: var(--text-muted);">*If embed fails to load, use the external link.</span>
+        <span style="font-size: 0.9rem; color: var(--text-muted);">*If embed fails to load, use the external
+          link.</span>
       </div>
     </div>
 
@@ -316,11 +222,15 @@
       <div class="grid grid-2">
         <div>
           <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Insight 1: The Batch-Sync Bottleneck</h4>
-          <p>Dashboard analysis reveals that <strong>85% of wrongful citations</strong> occur within 24 hours of a citizen purchasing a permit. This directly correlates to the legacy system's nightly batch upload schedule. Real-time API integration will immediately eliminate this specific failure mode.</p>
+          <p>Dashboard analysis reveals that <strong>85% of wrongful citations</strong> occur within 24 hours of a
+            citizen purchasing a permit. This directly correlates to the legacy system's nightly batch upload schedule.
+            Real-time API integration will immediately eliminate this specific failure mode.</p>
         </div>
         <div>
           <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Insight 2: Dispute Resolution Decay</h4>
-          <p>The backlog chart indicates that as the volume of disputes rises, the average resolution time scales exponentially, currently sitting at 68.5 hours. Implementing automated first-pass validation will clear 40% of standard disputes instantly.</p>
+          <p>The backlog chart indicates that as the volume of disputes rises, the average resolution time scales
+            exponentially, currently sitting at 68.5 hours. Implementing automated first-pass validation will clear 40%
+            of standard disputes instantly.</p>
         </div>
       </div>
     </div>
@@ -329,36 +239,38 @@
   <!-- PROPOSED SOLUTION -->
   <section id="solution" class="container">
     <h2>Proposed Solution & Architecture</h2>
-    
+
     <div class="glass-card" style="margin-bottom: 2rem;">
       <h3>Enterprise Architecture Overview</h3>
-      <p>The Centralized Integrated Parking System (CIPS) utilizes a modern, 4-tier cloud-native architecture mapped via TOGAF ADM. It replaces localized, siloed servers with a unified infrastructure.</p>
-      
-      <div class="mermaid" style="margin-top: 2rem; text-align: center; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem;">
+      <p>The Centralized Integrated Parking System (CIPS) utilizes a modern, 4-tier cloud-native architecture mapped via
+        TOGAF ADM. It replaces localized, siloed servers with a unified infrastructure.</p>
+
+      <div class="mermaid"
+        style="margin-top: 2rem; text-align: center; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem;">
         graph TD
-          subgraph Presentation Layer
-            CP[Citizen Portal Web]
-            EA[Enforcement Mobile App]
-            AD[Admin Dashboard]
-          end
-          subgraph Application Layer
-            AG[API Gateway]
-            PM[Permit Service Node.js]
-            CM[Citation Service Node.js]
-          end
-          subgraph Data Layer
-            DB[(Centralized SQL Database)]
-            WH[(Analytics Warehouse)]
-          end
-          
-          CP --> AG
-          EA --> AG
-          AD --> AG
-          AG --> PM
-          AG --> CM
-          PM --> DB
-          CM --> DB
-          DB --> WH
+        subgraph Presentation Layer
+        CP[Citizen Portal Web]
+        EA[Enforcement Mobile App]
+        AD[Admin Dashboard]
+        end
+        subgraph Application Layer
+        AG[API Gateway]
+        PM[Permit Service Node.js]
+        CM[Citation Service Node.js]
+        end
+        subgraph Data Layer
+        DB[(Centralized SQL Database)]
+        WH[(Analytics Warehouse)]
+        end
+
+        CP --> AG
+        EA --> AG
+        AD --> AG
+        AG --> PM
+        AG --> CM
+        PM --> DB
+        CM --> DB
+        DB --> WH
       </div>
     </div>
 
@@ -368,17 +280,23 @@
         <h3>Project Roadmap</h3>
         <div style="border-left: 2px solid var(--primary); padding-left: 1.5rem; position: relative;">
           <div style="margin-bottom: 1.5rem;">
-            <div style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);"></div>
+            <div
+              style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);">
+            </div>
             <h4 style="color: var(--text-main);">Phase 1: Foundation (Months 1-3)</h4>
             <p style="font-size: 0.9rem;">Cloud infrastructure setup, DB migration, basic API development.</p>
           </div>
           <div style="margin-bottom: 1.5rem;">
-            <div style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);"></div>
+            <div
+              style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);">
+            </div>
             <h4 style="color: var(--text-main);">Phase 2: Core Apps (Months 4-7)</h4>
             <p style="font-size: 0.9rem;">Citizen portal MVP, Enforcement App beta testing.</p>
           </div>
           <div>
-            <div style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);"></div>
+            <div
+              style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);">
+            </div>
             <h4 style="color: var(--text-main);">Phase 3: Optimization (Months 8-12)</h4>
             <p style="font-size: 0.9rem;">Analytics integration, predictive modeling, full city-wide rollout.</p>
           </div>
@@ -390,14 +308,45 @@
         <h3>Responsibility Matrix (RACI)</h3>
         <div style="overflow-x: auto;">
           <table>
-            <tr><th>Task</th><th>PM</th><th>Dev Team</th><th>City Admin</th><th>Enforcement</th></tr>
-            <tr><td>System Design</td><td>A</td><td>R</td><td>C</td><td>I</td></tr>
-            <tr><td>App Development</td><td>A</td><td>R</td><td>I</td><td>I</td></tr>
-            <tr><td>UAT Testing</td><td>A</td><td>S</td><td>R</td><td>R</td></tr>
-            <tr><td>Deployment</td><td>A</td><td>R</td><td>C</td><td>I</td></tr>
+            <tr>
+              <th>Task</th>
+              <th>PM</th>
+              <th>Dev Team</th>
+              <th>City Admin</th>
+              <th>Enforcement</th>
+            </tr>
+            <tr>
+              <td>System Design</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>App Development</td>
+              <td>A</td>
+              <td>R</td>
+              <td>I</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>UAT Testing</td>
+              <td>A</td>
+              <td>S</td>
+              <td>R</td>
+              <td>R</td>
+            </tr>
+            <tr>
+              <td>Deployment</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
           </table>
         </div>
-        <p style="font-size: 0.8rem; margin-top: 0.5rem;">R: Responsible, A: Accountable, C: Consulted, I: Informed, S: Support</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">R: Responsible, A: Accountable, C: Consulted, I: Informed, S:
+          Support</p>
       </div>
     </div>
   </section>
@@ -409,17 +358,22 @@
       <div class="grid grid-2" style="align-items: center;">
         <div>
           <h3>The CIPS Enforcement & Citizen App</h3>
-          <p>The application acts as the primary presentation layer for the CIPS ecosystem. It features role-based access control (RBAC):</p>
+          <p>The application acts as the primary presentation layer for the CIPS ecosystem. It features role-based
+            access control (RBAC):</p>
           <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 1rem;">
-            <li><strong>For Citizens:</strong> A responsive web app to apply for permits, upload verification documents, and securely pay fines.</li>
-            <li><strong>For Officers:</strong> A high-contrast mobile PWA (Progressive Web App) allowing instant license plate lookups via the live API, eliminating the "stale data" issue.</li>
+            <li><strong>For Citizens:</strong> A responsive web app to apply for permits, upload verification documents,
+              and securely pay fines.</li>
+            <li><strong>For Officers:</strong> A high-contrast mobile PWA (Progressive Web App) allowing instant license
+              plate lookups via the live API, eliminating the "stale data" issue.</li>
           </ul>
-          <p>By connecting directly to the central SQL database, the app addresses the main challenge: <em>Data Fragmentation</em>.</p>
+          <p>By connecting directly to the central SQL database, the app addresses the main challenge: <em>Data
+              Fragmentation</em>.</p>
         </div>
         <!-- Embedded App / Dashboard Part 2 -->
         <div class="iframe-container" style="padding-bottom: 100%; border-radius: 24px; border: 4px solid #333;">
           <!-- Placeholder for working app / interactive prototype -->
-           <iframe src="https://app.powerbi.com/view?r=eyJrIjoiX_PLACEHOLDER_KEY_X_APP" title="Interactive App Prototype"></iframe>
+          <iframe src="https://app.powerbi.com/view?r=eyJrIjoiX_PLACEHOLDER_KEY_X_APP"
+            title="Interactive App Prototype"></iframe>
         </div>
       </div>
     </div>
@@ -428,12 +382,13 @@
   <!-- BENEFITS & IMPACT -->
   <section id="benefits" class="container">
     <h2>Benefits & Impact</h2>
-    
+
     <!-- Before and After -->
     <div class="glass-card" style="margin-bottom: 2rem;">
       <h3>Comparison: Before and After (Dashboard Part 3)</h3>
       <div class="grid grid-2" style="margin-top: 1rem;">
-        <div style="background: rgba(255,0,0,0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,0,0,0.2);">
+        <div
+          style="background: rgba(255,0,0,0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,0,0,0.2);">
           <h4 style="color: #ff4d4d; margin-bottom: 1rem;">Legacy System (Before)</h4>
           <ul style="color: var(--text-muted); margin-left: 1.5rem;">
             <li>Batch updates every 24 hours</li>
@@ -442,7 +397,8 @@
             <li>No visual analytics for admins</li>
           </ul>
         </div>
-        <div style="background: rgba(0,255,128,0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(0,255,128,0.2);">
+        <div
+          style="background: rgba(0,255,128,0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(0,255,128,0.2);">
           <h4 style="color: #00ff80; margin-bottom: 1rem;">CIPS Solution (After)</h4>
           <ul style="color: var(--text-muted); margin-left: 1.5rem;">
             <li>Sub-second real-time API sync</li>
@@ -453,7 +409,7 @@
         </div>
       </div>
       <div style="margin-top: 1.5rem; text-align: center;">
-         <a href="#" class="btn btn-primary">View Post-Implementation Analytics (Part 3)</a>
+        <a href="#" class="btn btn-primary">View Post-Implementation Analytics (Part 3)</a>
       </div>
     </div>
 
@@ -463,7 +419,11 @@
       <div class="chart-container">
         <canvas id="kpiChart"></canvas>
       </div>
-      <p style="margin-top: 1rem; font-size: 0.9rem;">Implementing CIPS will drive the <strong>Wrongful Citation Rate</strong> down from 18.4% to an estimated 3.2%, while drastically reducing <strong>Permit Latency</strong> from 47 hours to under 8.5 hours. <strong>Dispute Resolution Time</strong> is projected to fall by 80% due to automated checks.</p>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">Implementing CIPS will drive the <strong>Wrongful Citation
+          Rate</strong> down from 45.5% to 5.25%, while drastically reducing <strong>Permit Latency</strong>
+        from 168.2 hours to 8.61 hours. <strong>Dispute Resolution Time</strong> is projected to fall from 231.3 hours
+        to 115.3 hours due to
+        automated checks.</p>
     </div>
   </section>
 
@@ -475,20 +435,27 @@
         <h3>Ethical & Social Considerations</h3>
         <p>Digitizing municipal enforcement requires careful ethical boundaries:</p>
         <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-          <li><strong>Data Privacy (PII):</strong> All citizen data (names, addresses, plates) is encrypted at rest and in transit. Access is strictly audited.</li>
-          <li><strong>Surveillance Concerns:</strong> The system is designed for compliance checking, not tracking. Location data is only logged at the moment of a citation.</li>
-          <li><strong>Digital Equity:</strong> Acknowledging that not all citizens have smartphone access, physical permit application centers will remain operational and sync to the new cloud system.</li>
+          <li><strong>Data Privacy (PII):</strong> All citizen data (names, addresses, plates) is encrypted at rest and
+            in transit. Access is strictly audited.</li>
+          <li><strong>Surveillance Concerns:</strong> The system is designed for compliance checking, not tracking.
+            Location data is only logged at the moment of a citation.</li>
+          <li><strong>Digital Equity:</strong> Acknowledging that not all citizens have smartphone access, physical
+            permit application centers will remain operational and sync to the new cloud system.</li>
         </ul>
       </div>
 
       <!-- Reflection -->
       <div class="glass-card">
         <h3>Lessons Learned & Team Reflection</h3>
-        <p>Through this project, Team 7 gained critical insights into enterprise architecture and public sector digital transformation:</p>
+        <p>Through this project, Team 7 gained critical insights into enterprise architecture and public sector digital
+          transformation:</p>
         <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-          <li><strong>Technical:</strong> We learned the importance of API-first design. Transitioning from batch to real-time sync is complex but absolutely necessary for modern systems.</li>
-          <li><strong>Business:</strong> Stakeholder alignment was harder than expected. Balancing the needs of citizens (privacy) with enforcement (accuracy) required continuous compromise.</li>
-          <li><strong>Teamwork:</strong> Utilizing Git for version control and Agile methodologies kept our cross-functional team on track during the tight 12-week development window.</li>
+          <li><strong>Technical:</strong> We learned the importance of API-first design. Transitioning from batch to
+            real-time sync is complex but absolutely necessary for modern systems.</li>
+          <li><strong>Business:</strong> Stakeholder alignment was harder than expected. Balancing the needs of citizens
+            (privacy) with enforcement (accuracy) required continuous compromise.</li>
+          <li><strong>Teamwork:</strong> Utilizing Git for version control and Agile methodologies kept our
+            cross-functional team on track during the tight 12-week development window.</li>
         </ul>
       </div>
     </div>
@@ -511,73 +478,12 @@
   <footer>
     <div class="container">
       <p>&copy; 2026 Team 7 - Riverton Municipal Research Project.</p>
-      <p style="font-size: 0.8rem; margin-top: 0.5rem;">Built with modern web technologies. Designed for the Future of Smart Cities.</p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem;">Built with modern web technologies. Designed for the Future of
+        Smart Cities.</p>
     </div>
   </footer>
 
-  <script>
-    // Initialize Mermaid
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
-
-    // Scroll Animation Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-
-    // Chart.js Configuration
-    const ctx = document.getElementById('kpiChart').getContext('2d');
-    
-    Chart.defaults.color = '#94a3b8';
-    Chart.defaults.font.family = "'Inter', sans-serif";
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Wrongful Citations (%)', 'Permit Latency (Hrs)', 'Dispute Res. Time (Hrs)', 'Dispute Backlog (%)'],
-        datasets: [
-          {
-            label: 'Current (Legacy)',
-            data: [18.4, 47.2, 68.5, 57],
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            borderColor: 'rgba(255, 255, 255, 0.3)',
-            borderWidth: 1,
-            borderRadius: 4
-          },
-          {
-            label: 'Target (CIPS)',
-            data: [3.2, 8.5, 12.0, 8],
-            backgroundColor: 'rgba(0, 212, 255, 0.5)',
-            borderColor: '#00d4ff',
-            borderWidth: 1,
-            borderRadius: 4
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            grid: { color: 'rgba(255,255,255,0.05)' },
-            beginAtZero: true
-          },
-          x: {
-            grid: { display: false }
-          }
-        },
-        plugins: {
-          legend: { position: 'top' }
-        }
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
+
 </html>
