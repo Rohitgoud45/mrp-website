@@ -49,18 +49,18 @@
   <!-- HOME / COVER PAGE -->
   <section class="hero" id="home">
     <div class="container hero-content">
-      <span class="team-badge">Team 7 Major Research Project</span>
+      <span class="team-badge">Team 7 Masters Research Project</span>
       <h1>Modernizing Riverton's <br><span class="gradient-text">Parking Ecosystem</span></h1>
       <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">A cloud-native Centralized Integrated Parking
         System (CIPS) designed to eliminate data silos, reduce wrongful citations, and elevate the citizen experience.
       </p>
 
       <div class="team-list">
-        <div class="team-member">Rohit Bandameedi - Architect</div>
-        <div class="team-member">Armili Paturi- Data Lead</div>
-        <div class="team-member">Rakshana Mannava Yesu- Dev Lead</div>
-        <div class="team-member">Steven Jhonson Bovolla - UX/UI</div>
-        <div class="team-member">Jayaram Bogasamudram- UX/UI</div>
+        <div class="team-member">Rohit Bandameedi - Project Manager</div>
+        <div class="team-member">Armili Paturi- System Architect</div>
+        <div class="team-member">Rakshana Mannava Yesu- Documentation Lead</div>
+        <div class="team-member">Steven Bovolla - Business Analyst </div>
+        <div class="team-member">Venkata Jaya Rami Reddy Bogasamudram- Data Analyst</div>
 
       </div>
 
@@ -75,90 +75,66 @@
   <section id="summary" class="container">
     <div class="glass-card">
       <h2>Executive Summary</h2>
-      <p>The City of Riverton faces critical operational challenges within its municipal parking infrastructure. Current
-        workflows are fragmented across the Parking Permit Office, Enforcement Division, and Finance Department, relying
-        on outdated batch-processing, legacy hardware, and siloed data repositories. This lack of integration leads to
-        severe synchronization delays, resulting in wrongful citations, revenue loss, and diminished public trust.</p>
-      <p>To address this, Team 7 proposes the implementation of the <strong>Centralized Integrated Parking System
-          (CIPS)</strong>. CIPS is a cloud-native platform utilizing a robust Node.js/Express backend and a centralized
-        SQL database to ensure real-time data synchronization across all municipal departments. By transitioning from
-        batch updates to instant verification, CIPS enables enforcement officers to access live permit statuses,
-        significantly reducing erroneous tickets.</p>
-      <p>This project encompasses a complete enterprise architecture redesign following the TOGAF ADM framework. It
-        includes the development of citizen-facing portals, a mobile app for enforcement officers, and a comprehensive
-        Looker Studio analytics dashboard for city administrators. Ultimately, CIPS aims to increase operational
-        efficiency
-        by 40%, reduce wrongful citations by over 80%, and establish a scalable foundation for Riverton's smart city
-        initiatives.</p>
+      <p>The Riverton Parking System Modernization project was designed to fix the inefficiencies in the city’s outdated
+        parking infrastructure. In the past, Riverton relied heavily on manual processes and spreadsheets, which created
+        data silos and slowed everything down. This led to major issues, including an average permit processing time of
+        about 168 hours (a full week) and a wrongful citation rate of 45.5%. These problems not only made operations
+        harder for staff but also frustrated residents and reduced trust in the system.</p>
+      <p>To address this, We implemented a centralized, technology-driven solution. The new system combines a mobile app
+        and a web platform, supported by a unified MySQL database and a Node.js backend. It connects two main tools: a
+        Permit Management App for residents and an Enforcement App for officers. Because both apps share real-time data,
+        the city has shifted from a reactive approach to a much more proactive and efficient system.</p>
+      <p>The results have been significant. Permit processing time has dropped by about 95%, and dispute resolution is
+        now twice as fast—cut down from roughly 231 hours to just over 115 hours. Citation accuracy has also improved
+        dramatically, rising from 54.5% to nearly 95%, largely because the system eliminates errors caused by outdated
+        or mismatched data.</p>
+      <p>In addition, the new administrative dashboard brings everything together in one place, giving city officials
+        clear visibility into revenue, enforcement activity, and overall system performance.</p>
     </div>
   </section>
 
   <!-- PROBLEM CONTEXT & STAKEHOLDERS -->
   <section id="problem" class="container">
-    <h2>Problem Context & Stakeholders</h2>
-    <div class="grid grid-2">
-      <div class="glass-card">
-        <h3>The Core Problem</h3>
-        <p>Riverton's current parking management environment exemplifies severe misalignment across Business, Data, and
-          Technology layers. Specifically, the system suffers from:</p>
-        <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 1rem;">
-          <li>Delayed batch-based data synchronization (24-48 hour lag).</li>
-          <li>Disconnected legacy handheld devices used by enforcement.</li>
-          <li>High volume of wrongful citations due to stale permit data.</li>
-          <li>Frustrating, manual dispute resolution processes for citizens.</li>
-        </ul>
-        <p>These inefficiencies drain municipal resources and damage citizen satisfaction.</p>
-      </div>
-      <div class="glass-card">
-        <h3>Key Stakeholders</h3>
-        <table>
-          <tr>
-            <th>Stakeholder</th>
-            <th>Interest / Role</th>
-          </tr>
-          <tr>
-            <td>Citizens</td>
-            <td>Fair ticketing, easy permit access</td>
-          </tr>
-          <tr>
-            <td>Enforcement Officers</td>
-            <td>Accurate, real-time vehicle data</td>
-          </tr>
-          <tr>
-            <td>City Council</td>
-            <td>Revenue assurance, public approval</td>
-          </tr>
-          <tr>
-            <td>Permit Admin</td>
-            <td>Streamlined application processing</td>
-          </tr>
-          <tr>
-            <td>IT Department</td>
-            <td>System maintenance, security</td>
-          </tr>
-        </table>
-      </div>
+    <div class="glass-card">
+      <h2>Problem Context & Stakeholders</h2>
+      <p>The primary stakeholders, including the Riverton permit office and field enforcement officers, were previously
+        trapped in an inefficient cycle characterized by delayed information and data conflicts between departments. The
+        legacy system suffered from severe bottlenecks, such as an average permit processing time of 168.24 hours and a
+        wrongful citation rate of 45.5%. Field officers were hindered by outdated equipment that lacked real-time data
+        synchronization, leading to a high volume of disputes and a slow resolution process that averaged over 231
+        hours. These inefficiencies created a significant administrative burden and eroded public trust in the city’s
+        parking enforcement capabilities.</p>
     </div>
   </section>
 
   <!-- RESEARCH & INSIGHTS -->
   <section id="research" class="container">
     <h2>Research & Insights</h2>
+    <div class="glass-card" style="margin-bottom: 2rem;">
+      <p>Analysis of the legacy system revealed that citation volumes peaked during March and June due to post-winter
+        activity and spring cleaning, with another elevation in December during the holiday season. Research into system
+        lifecycle efficiency showed that out of 400 total citations, approximately 182 were wrongful, yet the success
+        rate for resolving these wrongful disputes was only 36.89%. Insights from the implementation of the new
+        integrated system indicate that nearly all errors caused by data synchronization have been eliminated. Current
+        residual errors are now limited to unavoidable real-world factors such as physical meter malfunctions or officer
+        input mistakes, while citation accuracy has surged from 54.5% to 94.75%.</p>
+    </div>
     <div class="grid grid-3">
       <div class="glass-card" style="text-align: center;">
-        <h3 class="gradient-text" style="font-size: 3rem; margin-bottom: 0;">18.4%</h3>
-        <p>Current Wrongful Citation Rate</p>
-        <p style="font-size: 0.8rem;">Resulting directly from the 24-hour batch data sync delay.</p>
+        <h3 class="gradient-text" style="font-size: 3rem; margin-bottom: 0;">36.89%</h3>
+        <p>Dispute Resolution Success</p>
+        <p style="font-size: 0.8rem;">Resolution success rate for the 182 wrongful citations (out of 400) in the legacy
+          system.</p>
       </div>
       <div class="glass-card" style="text-align: center;">
-        <h3 class="gradient-text" style="font-size: 3rem; margin-bottom: 0;">47 hrs</h3>
-        <p>Avg. Permit Processing Time</p>
-        <p style="font-size: 0.8rem;">Due to manual verification against fragmented spreadsheets.</p>
+        <h3 class="gradient-text" style="font-size: 3rem; margin-bottom: 0;">94.75%</h3>
+        <p>New Citation Accuracy</p>
+        <p style="font-size: 0.8rem;">Accuracy surged from 54.5% to 94.75% after eliminating data sync errors.</p>
       </div>
       <div class="glass-card" style="text-align: center;">
-        <h3 class="gradient-text" style="font-size: 3rem; margin-bottom: 0;">1,240</h3>
-        <p>Monthly Disputes Filed</p>
-        <p style="font-size: 0.8rem;">Creating a massive administrative backlog and revenue freeze.</p>
+        <h3 class="gradient-text" style="font-size: 3rem; margin-bottom: 0;">Seasonal</h3>
+        <p>Citation Peaks</p>
+        <p style="font-size: 0.8rem;">Volumes peaked during March, June (spring cleaning), and December (holidays).</p>
       </div>
     </div>
   </section>
@@ -203,8 +179,7 @@
       <h3>Live Analytics Dashboard (Part 1: Current State vs Targets)</h3>
       <div class="iframe-container">
         <!-- Looker Studio embed -->
-        <iframe
-          src="https://datastudio.google.com/embed/reporting/e27e1eb5-5b05-4f46-a3fa-e8237fe22e89/page/pfNwF"
+        <iframe src="https://datastudio.google.com/embed/reporting/e27e1eb5-5b05-4f46-a3fa-e8237fe22e89/page/pfNwF"
           frameborder="0" style="border:0" allowfullscreen
           sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
           title="Project Dashboard"></iframe>
@@ -274,6 +249,27 @@
       </div>
     </div>
 
+    <!-- PROJECT CHARTER -->
+    <div class="glass-card" style="margin-bottom: 2rem;">
+      <h3>Project Charter</h3>
+      <div class="grid grid-2">
+        <div>
+          <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Project Goal</h4>
+          <p>To design and implement a Centralized Integrated Parking System (CIPS) that eliminates data fragmentation,
+            reduces wrongful citations, and accelerates permit processing times for the City of Riverton.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Scope & Constraints</h4>
+          <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 0;">
+            <li><strong>In Scope:</strong> Web portal for citizens, mobile app for enforcement, centralized SQL DB,
+              admin dashboards.</li>
+            <li><strong>Out of Scope:</strong> Physical parking meter hardware replacements.</li>
+            <li><strong>Constraints:</strong> 12-week timeline and municipal data privacy compliance.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="grid grid-2">
       <!-- Roadmap -->
       <div class="glass-card">
@@ -283,21 +279,21 @@
             <div
               style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);">
             </div>
-            <h4 style="color: var(--text-main);">Phase 1: Foundation (Months 1-3)</h4>
+            <h4 style="color: var(--text-main);">Phase 1: Foundation</h4>
             <p style="font-size: 0.9rem;">Cloud infrastructure setup, DB migration, basic API development.</p>
           </div>
           <div style="margin-bottom: 1.5rem;">
             <div
               style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);">
             </div>
-            <h4 style="color: var(--text-main);">Phase 2: Core Apps (Months 4-7)</h4>
+            <h4 style="color: var(--text-main);">Phase 2: Core Apps</h4>
             <p style="font-size: 0.9rem;">Citizen portal MVP, Enforcement App beta testing.</p>
           </div>
           <div>
             <div
               style="position: absolute; left: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);">
             </div>
-            <h4 style="color: var(--text-main);">Phase 3: Optimization (Months 8-12)</h4>
+            <h4 style="color: var(--text-main);">Phase 3: Optimization</h4>
             <p style="font-size: 0.9rem;">Analytics integration, predictive modeling, full city-wide rollout.</p>
           </div>
         </div>
@@ -311,42 +307,118 @@
             <tr>
               <th>Task</th>
               <th>PM</th>
-              <th>Dev Team</th>
-              <th>City Admin</th>
-              <th>Enforcement</th>
+              <th>Bus. Analyst</th>
+              <th>Data Analyst</th>
+              <th>Architect</th>
+              <th>Doc Lead</th>
             </tr>
             <tr>
-              <td>System Design</td>
+              <td>Problem Definition</td>
+              <td>R</td>
+              <td>A</td>
+              <td>C</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Research</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Project Charter</td>
+              <td>R</td>
+              <td>A</td>
+              <td>C</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Definition of KPIs</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Current State Data</td>
+              <td>C</td>
               <td>A</td>
               <td>R</td>
               <td>C</td>
               <td>I</td>
             </tr>
             <tr>
-              <td>App Development</td>
-              <td>A</td>
-              <td>R</td>
-              <td>I</td>
-              <td>I</td>
-            </tr>
-            <tr>
-              <td>UAT Testing</td>
-              <td>A</td>
-              <td>S</td>
-              <td>R</td>
-              <td>R</td>
-            </tr>
-            <tr>
-              <td>Deployment</td>
+              <td>Current State Analysis</td>
+              <td>C</td>
               <td>A</td>
               <td>R</td>
               <td>C</td>
               <td>I</td>
+            </tr>
+            <tr>
+              <td>Solution Design</td>
+              <td>C</td>
+              <td>A</td>
+              <td>C</td>
+              <td>R</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Future State Simulation</td>
+              <td>C</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Before and After Analysis</td>
+              <td>I</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Future State Analysis</td>
+              <td>I</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>I</td>
+            </tr>
+            <tr>
+              <td>Comparative Analysis</td>
+              <td>I</td>
+              <td>A</td>
+              <td>R</td>
+              <td>C</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Final Presentation</td>
+              <td>A</td>
+              <td>C</td>
+              <td>C</td>
+              <td>C</td>
+              <td>R</td>
+            </tr>
+            <tr>
+              <td>Written Report</td>
+              <td>C</td>
+              <td>A</td>
+              <td>C</td>
+              <td>I</td>
+              <td>R</td>
             </tr>
           </table>
         </div>
-        <p style="font-size: 0.8rem; margin-top: 0.5rem;">R: Responsible, A: Accountable, C: Consulted, I: Informed, S:
-          Support</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">R: Responsible, A: Accountable, C: Consulted, I: Informed</p>
       </div>
     </div>
   </section>
@@ -368,6 +440,10 @@
           </ul>
           <p>By connecting directly to the central SQL database, the app addresses the main challenge: <em>Data
               Fragmentation</em>.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="https://github.com/Rohitgoud45/Integrated-Riverton-Parking-System" target="_blank"
+              class="btn btn-primary">View App Repository</a>
+          </div>
         </div>
         <!-- Embedded App / Dashboard Part 2 -->
         <div class="iframe-container" style="padding-bottom: 100%; border-radius: 24px; border: 4px solid #333;">
@@ -385,7 +461,7 @@
 
     <!-- Before and After -->
     <div class="glass-card" style="margin-bottom: 2rem;">
-      <h3>Comparison: Before and After (Dashboard Part 3)</h3>
+      <h3>Comparison: Before and After</h3>
       <div class="grid grid-2" style="margin-top: 1rem;">
         <div
           style="background: rgba(255,0,0,0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,0,0,0.2);">
@@ -467,7 +543,8 @@
       <h3>Appendix & Resources</h3>
       <p>Additional documentation and technical artifacts for this project.</p>
       <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
-        <a href="#" class="btn btn-outline">GitHub Repository</a>
+        <a href="https://github.com/Rohitgoud45/Integrated-Riverton-Parking-System" target="_blank"
+          class="btn btn-outline">GitHub Repository</a>
         <a href="#" class="btn btn-outline">Raw Datasets (CSV)</a>
         <a href="#" class="btn btn-outline">Video Walkthrough</a>
       </div>
@@ -477,9 +554,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>&copy; 2026 Team 7 - Riverton Municipal Research Project.</p>
-      <p style="font-size: 0.8rem; margin-top: 0.5rem;">Built with modern web technologies. Designed for the Future of
-        Smart Cities.</p>
+      <p>&copy; 2026 Team 7 - Riverton Masters Research Project.</p>
     </div>
   </footer>
 
